@@ -18,7 +18,13 @@ import ResponseDetail from "./ResponseDetail";
 
 const cropText = (text: string) => text.substring(0, 100) + "...";
 
-const Tweets = ({ twitterAccount }: { twitterAccount: string }) => {
+const Tweets = ({
+  twitterAccount,
+  language,
+}: {
+  twitterAccount: string;
+  language: string;
+}) => {
   const [option, setOption] = React.useState<UserTweet | null>(null);
   const { data, isLoading, setReload, setUrl } = useData<Data>(
     `/api/tweets?twitterAccount=${twitterAccount}`
@@ -26,6 +32,7 @@ const Tweets = ({ twitterAccount }: { twitterAccount: string }) => {
 
   React.useEffect(() => {
     setUrl(`/api/tweets?twitterAccount=${twitterAccount}`);
+    setOption(null);
     setReload(true);
   }, [setReload, setUrl, twitterAccount]);
 
@@ -70,6 +77,7 @@ const Tweets = ({ twitterAccount }: { twitterAccount: string }) => {
                   favorites={option.favorites}
                   retweets={option.retweets}
                   link={option.tweetUrl}
+                  language={language}
                 />
               </Stack>
             ) : (

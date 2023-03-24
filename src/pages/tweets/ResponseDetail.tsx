@@ -28,6 +28,7 @@ const ResponseDetail = ({
   retweets,
   favorites,
   link,
+  language,
 }: {
   tweet: string;
   user: string;
@@ -36,10 +37,11 @@ const ResponseDetail = ({
   retweets: number;
   followers: number;
   link: string;
+  language: string;
 }) => {
   const [mood, setMood] = React.useState<Mood>("asertiva");
   const { data, isLoading, setReload, setUrl } = useData<Data>(
-    `/api/generateResponse?tweet=${tweet}&user=${user}&mood=${mood}`
+    `/api/generateResponse?tweet=${tweet}&user=${user}&mood=${mood}&language=${language}`
   );
   const [text, setText] = React.useState(data?.text);
 

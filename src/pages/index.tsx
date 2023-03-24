@@ -36,13 +36,13 @@ const App = () => {
 const SectionSelector = ({ index }: { index: number }) => {
   switch (index) {
     case 0:
-      return <Tweets twitterAccount="movistar_es" />;
+      return <Tweets twitterAccount="movistar_es" language="castellano" />;
     case 1:
-      return <Tweets twitterAccount="O2" />;
+      return <Tweets twitterAccount="O2" language="inglés" />;
     case 2:
-      return <Tweets twitterAccount="vivobr" />;
+      return <Tweets twitterAccount="vivobr" language="portugués" />;
     case 3:
-      return <Tweets twitterAccount="blau_presse" />;
+      return <Tweets twitterAccount="blau_presse" language="alemán" />;
     default:
       throw new Error("index doesnt exits:" + index);
   }
