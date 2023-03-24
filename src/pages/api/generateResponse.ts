@@ -8,6 +8,8 @@ export type Data = {
   text: string
 }
 
+export type Mood = "asertiva" | "divertida" | "troll";
+
 const API_KEY = process.env.API_KEY
 
 const configuration = new Configuration({
@@ -16,11 +18,11 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 
-const generateResponse = async (tweet: string, user: string) => openai.createCompletion({
+const generateResponse = async (tweet: string, user: string, mood: Mood) => openai.createCompletion({
         model: "text-davinci-003",
-        max_tokens: 200,
+        max_tokens: 300,
         temperature: 0.6,
-        prompt: `Genera un tuit de respuesta asertiva y respetuosa para este tuit: '${tweet}' y destinado a este usuario: '@${user}'`,
+        prompt: `Genera un tweet de respuesta ${mood} para este tweet: '${tweet}' que esté destinado a este usuario: '@${user}' y que tenga una extensión máxima de 300 caracteres`,
     });
 
 export default async function handler(
@@ -29,8 +31,9 @@ export default async function handler(
 ) {
   const tweet = req.query['tweet'] as string;
   const user = req.query['user'] as string;
+  const mood = req.query['mood'] as string;
 
-  const response = await generateResponse(tweet, user);
+  const response = await generateResponse(tweet, user, mood as Mood);
   const text = response.data.choices[0].text ?? 'neutral';
   res.status(200).json({ text })
 }

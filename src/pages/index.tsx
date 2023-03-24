@@ -14,7 +14,7 @@ import Stats from "./stats";
 const App = () => {
   const [index, setIndex] = React.useState(0);
 
-  const mainSections = ["Tweets", "Stats"] as const;
+  const mainSections = ["Tweets"] as const;
 
   return (
     <>

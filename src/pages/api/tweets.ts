@@ -49,7 +49,7 @@ export default function handler(
       {
         q: "to:movistar_es",
         tweet_mode:"extended",
-        count: "5"
+        count: "1"
       },
       function(error, tweets, response) {
         const mappedResponse = mapResponse(tweets);

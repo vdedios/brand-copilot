@@ -54,15 +54,17 @@ const Tweets = () => {
         detail={
           <div style={{ position: "fixed", width: "50%" }}>
             {option ? (
-              <ResponseDetail
-                tweet={option.tweet}
-                user={option.user}
-                setOption={setOption}
-                followers={option.followers}
-                favorites={option.favorites}
-                retweets={option.retweets}
-                link={option.tweetUrl}
-              />
+              <Stack space={12}>
+                <ResponseDetail
+                  tweet={option.tweet}
+                  user={option.user}
+                  setOption={setOption}
+                  followers={option.followers}
+                  favorites={option.favorites}
+                  retweets={option.retweets}
+                  link={option.tweetUrl}
+                />
+              </Stack>
             ) : (
               <Text5>
                 Select one of the tweets from the sidebar to start moderating.
