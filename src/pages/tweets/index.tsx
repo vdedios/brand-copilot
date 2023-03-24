@@ -18,9 +18,16 @@ import ResponseDetail from "./ResponseDetail";
 
 const cropText = (text: string) => text.substring(0, 100) + "...";
 
-const Tweets = () => {
+const Tweets = ({ twitterAccount }: { twitterAccount: string }) => {
   const [option, setOption] = React.useState<UserTweet | null>(null);
-  const { data, isLoading } = useData<Data>("/api/tweets");
+  const { data, isLoading, setReload, setUrl } = useData<Data>(
+    `/api/tweets?twitterAccount=${twitterAccount}`
+  );
+
+  React.useEffect(() => {
+    setUrl(`/api/tweets?twitterAccount=${twitterAccount}`);
+    setReload(true);
+  }, [setReload, setUrl, twitterAccount]);
 
   return (
     <Box paddingTop={24}>

@@ -14,7 +14,7 @@ import Stats from "./stats";
 const App = () => {
   const [index, setIndex] = React.useState(0);
 
-  const mainSections = ["Tweets"] as const;
+  const mainSections = ["MovistarES", "O2UK", "VivoBR", "BlauDE"] as const;
 
   return (
     <>
@@ -36,11 +36,15 @@ const App = () => {
 const SectionSelector = ({ index }: { index: number }) => {
   switch (index) {
     case 0:
-      return <Tweets />;
+      return <Tweets twitterAccount="movistar_es" />;
     case 1:
-      return <Stats />;
+      return <Tweets twitterAccount="O2" />;
+    case 2:
+      return <Tweets twitterAccount="vivobr" />;
+    case 3:
+      return <Tweets twitterAccount="blau_presse" />;
     default:
-      return <Stats />;
+      throw new Error("index doesnt exits:" + index);
   }
 };
 
